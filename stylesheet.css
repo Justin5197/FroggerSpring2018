@@ -1,0 +1,351 @@
+
+/*
+	Project: FlyFrogger
+
+	Group: Justin Little, Nick Jones, Reuel Jacques-Sorrell
+
+	Description: 
+		The "stylesheet.css" file formats the appearance and animation of the
+		"index.html" and "game.html" files.
+*/
+
+
+/* Formatting the heading "FlyFrogger" */
+h1 {
+	margin-top: 0;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 60pt;
+}
+
+/* Formatting the sub-heading "An HTML/CSS Animation" */
+h2 {
+	margin-top: 89px;
+	margin-left: 50px;
+	font-family: 'Raleway', sans-serif;
+}
+
+/* 
+	Formats the positioning of both the heading & sub-heading to absolute postion
+	so that the exact margins can be declared in the upper, left-hand corner
+*/
+h1, 
+h2 {
+	position: absolute;
+}
+
+/* This wrapper div class is created to align the Start button in the center */
+.wrapper {
+	margin-right: 300px;
+	text-align: center;
+}
+
+/* Formats the start button */
+.start-button {
+	position: absolute;
+	bottom: 50%; /* middle of the screen top/bottom */
+	font-family: "Raleway", sans-serif;
+    color: black;
+    font-size: 100px;
+    background-color: white;
+    border: 2px solid #e7e7e7;
+    border-radius: 8px;
+    cursor: pointer; 
+    /* Refers to the hover/visited animation actiions, 
+    	which changes the box shading and opacity which
+    	takes 0.4 seconds. */
+    opacity: 0.5; /* medium transparency */
+    transition-duration: 0.4s;
+}
+
+/* The wrapper2 div/class created to format the positioning of the Reset 
+	button on the screen */
+.wrapper2 { text-align: center;}
+
+/* Formats the Restart button the same as the Start button with different positioning */
+.reset-button {
+	position: absolute;
+	right: 10px;
+	font-family: "Raleway", sans-serif;
+	color: black;
+	font-size: 50px;
+    background-color: white;
+    border: 2px solid #e7e7e7;
+    border-radius: 8px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+/* Formats the reset & start buttons when the mouse hovers over the button */
+.start-button:hover, 
+.reset-button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity: 0.75;
+}
+
+/* Formats the link on the button to appear black instead of blue or purple */
+a, a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+
+/* Formats the appearance and positioning of the tongue, refers to "tongue.png" */
+.tongue {
+	position: absolute;
+	bottom: 0px;
+	left: 230px;
+	opacity: 0;
+	-webkit-animation: lick 60s infinite  normal;
+	animation-delay: 4s;
+	animation-iteration-count: 1;
+}
+
+/* Formats the image of the frog without the tongue, refers to "frog.png" */
+.frog {
+	position: absolute;
+	bottom: 0px;
+	left: 200px;
+	-webkit-animation: moveFrog 60s infinite  normal ease-out;
+	animation-delay: 4s;
+	animation-iteration-count: 1;
+
+}
+
+/* 
+
+The following formats the individual flies that appear on the screen from
+	the right to the left side of the screen
+ */
+
+.fly1 {
+	position: absolute;
+	bottom: 100px;
+	right: 0px;
+	opacity: 0;
+	-webkit-animation: moveFly 6s infinite  normal ease-out;
+	animation-delay: 6s;
+	animation-iteration-count: 4;	
+}
+
+.fly2 {
+	position: absolute;
+	bottom: 250px;
+	right: 0px;
+	opacity: 0;
+	-webkit-animation: moveFly 4s infinite  normal ease-out;
+	animation-delay: 4s;
+	animation-iteration-count: 6; 
+}
+
+.fly3 {
+	position: absolute;
+	bottom: 400px;
+	right: 0px;
+	opacity: 0;
+	-webkit-animation: moveFly 5s infinite  normal ease-out;
+	animation-delay: 5s;
+	animation-iteration-count: 5;
+}
+
+.fly4 {
+	position: absolute;
+	bottom: 550px;
+	right: 0px;
+	opacity: 0;
+	-webkit-animation: moveFly 4s infinite normal ease-out;
+	animation-delay: 2s;
+	animation-iteration-count: 7;
+}
+
+/* 
+	> The following is a keyframe called "moveFly" that creates the fly's animation.
+	> The percentages on the left-hand side represent the time throughout each interval
+		of the animation.
+	> "right: 0-100%" shows the position of the flies accross the screen from right to left.
+	> The opacity is adjusted to 100 until 70% of the animation, where the fly disappears, 
+		which is "opacity: 0"
+ */
+
+@-webkit-keyframes moveFly {
+    0% {right:0%; opacity: 100;}
+    10% { right:10%; opacity: 100;}
+    20% { right: 20%; opacity: 100;}
+    30% { right: 30%; opacity: 100;}
+    40% { right: 40%; opacity: 100;}
+    50% { right: 50%; opacity: 100;}
+    60% { right: 60%; opacity: 100;}
+    70% { right: 70%; opacity: 100;}
+    71% { right: 70%; opacity: 0; }
+    80% { right: 80%; opacity: 0;}
+    90% { right: 90%; opacity: 0;}
+    100% { right: 100%; opacity: 0;}
+}
+
+/*
+	> The following is a keyframe called "moveFrog" which directs the animation for the 
+		"frog" image to move to the fly. This effect will create the effect
+		that the frog is catching the fly. The seperate animation titled "lick" is below
+		"moveFrog"
+	> The percentages throughout the animation interval are set based on what timeframe 
+		throughout the 60 second animation the fly reaches the frogs vicinity (70% of the 
+		screen from the right margin).
+	> The positioning (Ex. bottom: 460px) is adjusted every time a new fly crosses the 
+		frog's threshold. The positions are exactly the same as the fly's (set from the 
+		bottom margin) so that the frog meets the fly at the exact position.
+*/
+
+@-webkit-keyframes moveFrog {
+	0% { bottom: 0px;}
+	1.5% { bottom: 460px;}
+	5% { bottom: 120px; }
+	7% { bottom: 300px; }
+	8% { bottom: 460px;}
+	9.5% { bottom: 0px; }
+	11% { bottom: 120px; }
+	14% { bottom: 460px; }
+	15.5% { bottom: 300px; }
+	18% { bottom: 120px; }
+	20% { bottom: 0px; }
+	21.5% { bottom: 460px; }
+	23.5% { bottom:300px; }
+	25% { bottom:120px; }
+	27.5% { bottom:460px; }
+	30% { bottom:0px; }
+	31.5% { bottom: 120px; }
+	33% { bottom: 300px; }
+	35% { bottom: 460px; }
+	38% { bottom: 120px; }
+	40% { bottom: 0px; }
+	41% { bottom: 300px; }
+	41.5% { bottom: 460px; }
+	45% { bottom: 0px; }
+	100% { bottom: 0px; }
+}
+
+/*
+	> The following is a keyframe called "lick" which directs the animation for the
+		"tongue" image to move with the frog & appear at the time the frog meets the fly
+	> The opacity is set to 0 to begin with, and is adjusted to 100 at 0.1s before and 
+		disappear 0.1s after the frog reaches the fly.
+	> The positioning (Ex. "bottom: 460px") is adjusted to mimick the keyframe "moveFrog"
+		so that the "tongue" image follows the normal "frog" image.
+*/
+
+@-webkit-keyframes lick {
+	0% { bottom: 0px;}
+
+	1.3% { opacity: 0; }
+	1.4% { opacity: 100; }
+	1.5% { bottom: 460px;}
+	1.6% { opacity: 0; }
+
+	4.8% { opacity: 0; }
+	4.9% { opacity: 100; }
+	5% { bottom: 120px; }
+	5.1% { opacity: 0; }
+
+	6.8% { opacity: 0; }
+	6.9% { opacity: 100; }
+	7% { bottom: 300px; }
+	7.1% { opacity: 0; }
+
+	7.8% { opacity: 0; }
+	7.9% { opacity: 100; }
+	8% { bottom: 460px;}
+	8.1% { opacity: 0; }
+
+	9.3% { opacity: 0; }
+	9.4% { opacity: 100; }
+	9.5% { bottom: 0px; }
+	9.6% { opacity: 0; }
+	
+	10.8% { opacity: 0; }
+	10.9% { opacity: 100; }
+	11% { bottom: 120px; }
+	11.1% { opacity: 0; }
+
+	13.8% { opacity: 0; }
+	13.9% { opacity: 100; }
+	14% { bottom: 460px; }
+	14.1% { opacity: 0; }
+
+	15.3% { opacity: 0; }
+	15.4% { opacity: 100; }
+	15.5% { bottom: 300px; }
+	15.6% { opacity: 0; }
+
+	17.8% { opacity: 0; }
+	17.9% { opacity: 100; }
+	18% { bottom: 120px; }
+	18.1% { opacity: 0; }
+
+	19.8% {opacity: 0;}
+	19.9% { opacity: 100; }
+	20% { bottom: 0px; }
+	20.1% {opacity: 0;}
+
+	21.3% { opacity: 0; }
+	21.4% { opacity: 100; }
+	21.5% { bottom: 460px; }
+	21.6% { opacity: 0; }
+
+	23.3% { opacity: 0; }
+	23.4% { opacity: 100; }
+	23.5% { bottom:300px; }
+	23.6% { opacity: 0; }
+
+	24.8% { opacity: 0; }
+	24.9% { opacity: 100; }
+	25% { bottom:120px; }
+	25.1% { opacity: 0; }
+
+	27.3% { opacity: 0; }
+	27.4% { opacity: 100; }
+	27.5% { bottom:460px; }
+	27.6% { opacity: 0; }
+
+	29.8% { opacity: 0; }
+	29.9% { opacity: 100; }
+	30% { bottom:0px; }
+	30.1% { opacity: 0; }
+
+	31.3% { opacity: 0; }
+	31.4% { opacity: 100; }
+	31.5% { bottom: 120px; }
+	31.6% { opacity: 0; }
+
+	32.8% { opacity: 0; }
+	32.9% { opacity: 100; }
+	33% { bottom: 300px; }
+	33.1% { opacity: 0; }
+
+	34.8% { opacity: 0; }
+	34.9% { opacity: 100; }
+	35% { bottom: 460px; }
+	35.1% { opacity: 0; }
+
+	37.8% { opacity: 0; }
+	37.9% { opacity: 100; }
+	38% { bottom: 120px; }
+	38.1% { opacity: 0; }
+
+	39.8% { opacity: 0; }
+	39.9% { opacity: 100; }
+	40% { bottom: 0px; }
+	40.1% { opacity: 0; }
+
+	40.8% { opacity: 0; }
+	40.9% { opacity: 100; }
+	41% { bottom: 300px; }
+	41.1% { opacity: 0; }
+
+	41.3% { opacity: 0; }
+	41.4% { opacity: 100; }
+	41.5% { bottom: 460px; }
+	41.6% { opacity: 0; }
+
+	45% { bottom: 0px; }
+
+	100% { bottom: 0px; }
+}
